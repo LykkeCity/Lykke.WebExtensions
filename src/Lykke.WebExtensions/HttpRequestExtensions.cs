@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Lykke.WebExtensions
 {
-    public static class HttpContextExtensions
+    public static class HttpRequestExtensions
     {
         public static Uri GetUri(this HttpRequest request)
         {
@@ -25,20 +25,6 @@ namespace Lykke.WebExtensions
             }
 
             return builder.Uri;
-        }
-
-        public static string GetUserAgent(this HttpRequest request, string name)
-        {
-            var parametersDict = request.GetUserAgent();
-            return parametersDict.ContainsKey(name) ? parametersDict[name] : null;
-        }
-
-        public static IDictionary<string, string> GetUserAgent(this HttpRequest request)
-        {
-            var userAgent = request.Headers["User-Agent"].ToString();
-
-            var parameters = userAgent.Split(';');
-            return parameters.Select(parameter => parameter.Split('=')).Where(kv => kv.Length > 1).ToDictionary(kv => kv[0], kv => kv[1]);
         }
     }
 }
