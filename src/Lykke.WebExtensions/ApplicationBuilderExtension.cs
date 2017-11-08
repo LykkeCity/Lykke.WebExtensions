@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Autofac;
+using Microsoft.AspNetCore.Builder;
 
 namespace Lykke.WebExtensions
 {
-    public static class ApplicationBuilderExtensions
+    public static class ApplicationBuilderExtension
     {
         public static void UseWebExtensions(this IApplicationBuilder app)
         {
