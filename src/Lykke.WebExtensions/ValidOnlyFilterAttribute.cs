@@ -41,7 +41,11 @@ namespace Lykke.WebExtensions
         public static string GetErrorMessage(ICollection<ValidationResult> results)
         {
             var errorList = new List<string>(results.Count);
-            errorList.AddRange(from entry in results where !string.IsNullOrWhiteSpace(entry.ErrorMessage) select $"{entry.MemberNames.Aggregate((x, y) => $"{x}, {y}")}: {entry.ErrorMessage}");
+            errorList.AddRange(
+                from entry
+                in results
+                where !string.IsNullOrWhiteSpace(entry.ErrorMessage)
+                select $"{string.Join(", ", entry.MemberNames)}: {entry.ErrorMessage}");
             return string.Join(" ", errorList);
         }
     }
